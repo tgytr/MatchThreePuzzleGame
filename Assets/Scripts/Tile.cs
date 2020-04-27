@@ -1,27 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class Tile : MonoBehaviour
 {
 
-    public int x;
-    public int y;
+	public int xIndex;
+	public int yIndex;
 
-    Board board;
+	Board m_board;
 
-    public void Init(int x, int y, Board board)
-    {
-        this.x = x;
-        this.y = y;
-        this.board = board;
-    }
+	// Use this for initialization
+	void Start()
+	{
 
+	}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public void Init(int x, int y, Board board)
+	{
+		xIndex = x;
+		yIndex = y;
+		m_board = board;
 
+	}
+
+	void OnMouseDown()
+	{
+		if (m_board != null)
+		{
+			m_board.ClickTile(this);
+		}
+
+	}
+
+	void OnMouseEnter()
+	{
+		if (m_board != null)
+		{
+			m_board.DragToTile(this);
+		}
+
+	}
+
+	void OnMouseUp()
+	{
+		if (m_board != null)
+		{
+			m_board.ReleaseTile();
+		}
+
+	}
 }
