@@ -98,3 +98,4 @@ MonoBehaviour:
   yIndex: 0
   interpolation: 4
   matchValue: 2
+  scoreValue: 20
