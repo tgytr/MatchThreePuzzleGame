@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UIElements;
 
 public class Board : MonoBehaviour
 {
+    public Color backgroundColour;
 
     public int width;
     public int height;
@@ -12,6 +14,16 @@ public class Board : MonoBehaviour
     public int borderSize;
 
     public GameObject tilePrefab;
+
+    //Board background Prefabs
+    public GameObject tileBackgroundPrefab;
+    public GameObject tileLeftBottomPrefab;
+    public GameObject tileRightBottomPrefab;
+    public GameObject tileLeftTopPrefab;
+    public GameObject tileRightTopPrefab;
+
+
+
     public GameObject[] gamePiecePrefabs;
 
     public float swapTime = 0.5f;
@@ -24,7 +36,6 @@ public class Board : MonoBehaviour
 
     bool m_playerInputEnabled = true;
 
-
     int m_scoreMultiplier = 0;
 
     void Start()
@@ -32,7 +43,6 @@ public class Board : MonoBehaviour
         m_allTiles = new Tile[width, height];
         m_allGamePieces = new GamePiece[width, height];
 
-        
     }
 
 
@@ -45,15 +55,34 @@ public class Board : MonoBehaviour
         FillBoard(10, 0.5f);
     }
 
-
-
-
     void SetupTiles()
     {
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < height; j++)
             {
+                if (i == 0 && j == 0)
+                {
+                    GameObject tileLeftBottom = Instantiate(tileLeftBottomPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
+                }
+                else if (i == 0 && j == height-1)
+                {
+                    GameObject tileLeftBottom = Instantiate(tileLeftTopPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
+                }
+                else if (i == width-1 && j == 0)
+                {
+                    GameObject tileLeftBottom = Instantiate(tileRightBottomPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
+                }
+                else if (i == width - 1 && j == height - 1)
+                {
+                    GameObject tileLeftBottom = Instantiate(tileRightTopPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
+                }
+                else
+                {
+                    GameObject tileLeftBottom = Instantiate(tileBackgroundPrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
+                }
+
+
                 GameObject tile = Instantiate(tilePrefab, new Vector3(i, j, 0), Quaternion.identity) as GameObject;
 
                 tile.name = "Tile (" + i + "," + j + ")";
@@ -63,14 +92,14 @@ public class Board : MonoBehaviour
                 tile.transform.parent = transform;
 
                 m_allTiles[i, j].Init(i, j, this);
-
+                //tile.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_Color", Color.red);
             }
         }
     }
 
     void SetupCamera()
     {
-        Camera.main.transform.position = new Vector3((float)(width - 1) / 2f, (float)(height - 1) / 2f, -10f);
+        Camera.main.transform.position = new Vector3((float)(width - 1) / 2f, (float)(3*height - 1) / 5f, -10f);
 
         float aspectRatio = (float)Screen.width / (float)Screen.height;
 
@@ -603,6 +632,9 @@ public class Board : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         while (matches.Count != 0);
+
+        //change the sides to play
+        ScoreManager.Instance.isPlayerOne = !ScoreManager.Instance.isPlayerOne;
 
         m_playerInputEnabled = true;
     }

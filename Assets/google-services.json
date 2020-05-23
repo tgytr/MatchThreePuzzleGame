@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "440091698379",
+    "firebase_url": "https://thegame-314e3.firebaseio.com",
+    "project_id": "thegame-314e3",
+    "storage_bucket": "thegame-314e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440091698379:android:f0814e62b9f6a2e098674e",
+        "android_client_info": {
+          "package_name": "com.Tgytr.TheGame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440091698379-2d3pffsgvq707barudiso47dds5rv9ln.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhGJQwuqipNI_CHdah0P0lZ6_M4iQpDzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440091698379-2d3pffsgvq707barudiso47dds5rv9ln.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

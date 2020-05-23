@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/firebase_database_url,@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="firebase_database_url" translatable="false">https://thegame-314e3.firebaseio.com</string>
+  <string name="gcm_defaultSenderId" translatable="false">440091698379</string>
+  <string name="google_storage_bucket" translatable="false">thegame-314e3.appspot.com</string>
+  <string name="project_id" translatable="false">thegame-314e3</string>
+  <string name="google_api_key" translatable="false">AIzaSyBhGJQwuqipNI_CHdah0P0lZ6_M4iQpDzo</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBhGJQwuqipNI_CHdah0P0lZ6_M4iQpDzo</string>
+  <string name="google_app_id" translatable="false">1:440091698379:android:f0814e62b9f6a2e098674e</string>
+  <string name="default_web_client_id" translatable="false">440091698379-2d3pffsgvq707barudiso47dds5rv9ln.apps.googleusercontent.com</string>
+</resources>
