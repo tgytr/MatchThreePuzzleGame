@@ -235,7 +235,7 @@ public class GameManager : Singleton<GameManager>
 
         // reload the scene (you would customize this to go back to the menu or go to the next level
         // but we just reload the same scene in this demo
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Main");
     }
 
 
