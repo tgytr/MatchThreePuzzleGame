@@ -4,11 +4,12 @@ using UnityEngine;
 using Firebase;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class AuthManager : MonoBehaviour
 {
 
-
+    public TMP_Text currentUserLoggedIn;
     public TMP_InputField emailInput;
     public TMP_InputField passwordInput;
     private Firebase.Auth.FirebaseAuth auth;
@@ -22,7 +23,9 @@ public class AuthManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        //to be changed for test purposes only
+        currentUserLoggedIn.text = auth.CurrentUser.UserId;
     }
 
     public void SignUp()
@@ -78,6 +81,11 @@ public class AuthManager : MonoBehaviour
         Debug.LogFormat(auth.CurrentUser.Email);
         auth.SignOut();
         
+    }
+
+    public void turnBackHome()
+    {
+        SceneManager.LoadScene("Main");
     }
 
     void getUserInfo()

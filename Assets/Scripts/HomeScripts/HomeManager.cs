@@ -87,4 +87,9 @@ public class HomeManager : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+
+    public void ProfileClicked()
+    {
+        SceneManager.LoadScene("UserProfile");
+    }
 }
