@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class HomeManager : MonoBehaviour
+public class HomeManager : Singleton<HomeManager>
 {
 
     public GameObject leaderCharSpace;
-    public float timeToMove = 0.4f;
+    public float timeToMove = 1f;
+
+    public GameObject leaderCharacter;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(InitialCharacterMoves());
-
-	}
+        StartCoroutine("InitialCharacterMoves");
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,18 +30,30 @@ public class HomeManager : MonoBehaviour
 
     }
 
+
+    void SetPlayerLeaderChar(Image image)
+    {
+        leaderCharacter.GetComponent<Image>().sprite = image.sprite;
+
+        //if (gameObjectOne.tag == "CoolCloud")
+        //{
+        //    imageGameObject.GetComponent<Image>().sprite = hammerSprite;
+        //}
+    }
+
+
     IEnumerator InitialCharacterMoves()
     {
         while (true) {
             yield return StartCoroutine(MoveCharDownRoutine(timeToMove));
             yield return StartCoroutine(MoveCharUpRoutine(timeToMove));
-        }
-    }
+        }                                                                     
+    }                                                                         
 
     IEnumerator MoveCharDownRoutine(float timeToMove)
     {
         Vector3 startPosition = leaderCharSpace.transform.position;
-        Vector3 endPosition = new Vector3(startPosition.x, startPosition.y-120);
+        Vector3 endPosition = new Vector3(startPosition.x, startPosition.y - 120);
 
 		float elapsedTimeDown = 0f;
 
@@ -46,7 +61,7 @@ public class HomeManager : MonoBehaviour
 		{
             // track the total running time
             elapsedTimeDown += Time.deltaTime;
-            Debug.Log(elapsedTimeDown);
+
             // calculate the Lerp value
             float t = Mathf.Clamp(elapsedTimeDown / timeToMove, 0f, 1f);
 
@@ -64,15 +79,15 @@ public class HomeManager : MonoBehaviour
         Vector3 startPosition = leaderCharSpace.transform.position;
         Vector3 endPosition = new Vector3(startPosition.x, startPosition.y + 120);
 
-        float elapsedTime = 0f;
+        float elapsedTimeDown = 0f;
 
-        while (elapsedTime <= 1)
+        while (elapsedTimeDown <= 1)
         {
             // track the total running time
-            elapsedTime += Time.deltaTime;
+            elapsedTimeDown += Time.deltaTime;
 
             // calculate the Lerp value
-            float t = Mathf.Clamp(elapsedTime / timeToMove, 0f, 1f);
+            float t = Mathf.Clamp(elapsedTimeDown / timeToMove, 0f, 1f);
 
             //	case InterpType.SmootherStep:
             t = t * t * t * (t * (t * 6 - 15) + 10);
